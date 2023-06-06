@@ -1,12 +1,27 @@
 import { PostCard } from '../PostCard';
 import './styles.css';
-export const Posts = ({posts}) => (
+import P from 'prop-types'
+
+export const Posts = ({posts = []}) => (
     <div className="posts">
     {posts.map(post => (
       <PostCard
-        key={post.id} 
+        key={post.id}
         post={post}
       />
     ))}
   </div>
 );
+
+Posts.defaultProps = {
+  posts: [],
+}
+
+Posts.propTypes = {
+  posts: P.arrayOf(P.shape({
+    title: P.string,
+    cover: P.string,
+    body: P.string,
+    id: P.number,
+  })),
+}

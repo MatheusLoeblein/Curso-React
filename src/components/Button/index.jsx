@@ -1,17 +1,22 @@
-import { Component } from "react";
 import './styles.css';
+import P from 'prop-types';
 
-export class Button extends Component{
-    render(){
-        const {text, click, disabled} = this.props;
-        return(
-            <button 
-            className="button" 
-            onClick={click} 
-            disabled={disabled}
-            >
-                {text}
-            </button>
-        )
-    }
-} 
+export const Button = ({text, click, disabled=false}) => (
+    <button
+    className="button"
+    onClick={click}
+    disabled={disabled}
+    >
+    {text}
+    </button>
+);
+
+Button.defaultProps = {
+  disable: false,
+}
+
+Button.propTypes = {
+  text: P.string.isRequired,
+  click: P.func,
+  disabled: P.bool,
+};

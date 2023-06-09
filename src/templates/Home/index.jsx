@@ -9,7 +9,7 @@ export const Home = () => {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [page, setPage] = useState(0);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(2);
   const [searchValue, setSearchValue] = useState("");
 
   const handleLoadPosts = useCallback(async (page, postsPerPage) => {
@@ -19,7 +19,7 @@ export const Home = () => {
   }, []);
 
   useEffect(() => {
-    handleLoadPosts(postsPerPage);
+    handleLoadPosts(0, postsPerPage);
   }, [handleLoadPosts, postsPerPage]);
 
   const loadMorePosts = () => {
@@ -49,12 +49,7 @@ export const Home = () => {
   return (
     <section className="container">
       <div className="search-container">
-        {!!searchValue && (
-          <h1>
-            Search Value: {searchValue} Foram encontrado:{filteredPosts.length}{" "}
-            Posts.
-          </h1>
-        )}
+        {!!searchValue && <h1>Search Value: {searchValue}</h1>}
 
         <TextInput searchValue={searchValue} handleChange={handleChange} />
       </div>
